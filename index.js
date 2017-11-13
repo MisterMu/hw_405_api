@@ -15,7 +15,7 @@ MongoClient.connect(URL, function(err, db) {
   app.listen((process.env.PORT || 8080), function() {
 
     app.get('/', function(req, res) {
-      db.collection('users').find({}, {_id: false}).toArray(function(err, result) {
+      db.collection('users').find({}, {_id: false}).sort({id: 1}).toArray(function(err, result) {
         if (err) throw err;
         res.render('index', {
           title: 'customer list',
@@ -25,7 +25,7 @@ MongoClient.connect(URL, function(err, db) {
     });
 
     app.get('/user', function(req, res){
-      db.collection('users').find({}, {_id: false}).toArray(function(err, result) {
+      db.collection('users').find({}, {_id: false}).sort({id: 1}).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
         res.json(result);
