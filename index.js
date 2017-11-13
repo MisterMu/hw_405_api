@@ -42,10 +42,10 @@ MongoClient.connect(URL, function(err, db) {
           age: parseInt(req.body.age),
           email: req.body.email
         }
-        db.collection('users').insertOne(newUser, function(err, res) {
+        db.collection('users').insertOne(newUser, function(err, result) {
           if (err) throw err;
+          res.redirect('/');
         });
-        res.send('insert user ' + (uid + 1) + ' success!!');
       });
     });
 
